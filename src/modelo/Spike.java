@@ -1,11 +1,12 @@
 package modelo;
 
+import java.util.ArrayList;
+
 public class Spike implements ItemDeTrabajo {
 
-	private int tiempoNecesario;
+	private ArrayList<ItemDeTrabajo> itemsDeTrabajo = new ArrayList<ItemDeTrabajo>();
 
-	public Spike(int tiempoNecesario) {
-		this.tiempoNecesario = tiempoNecesario;
+	public Spike() {
 	}
 
 	@Override
@@ -14,7 +15,12 @@ public class Spike implements ItemDeTrabajo {
 
 	@Override
 	public int tiempoNecesario() {
-		return this.tiempoNecesario;
+		int tiempo = 0;
+		for (ItemDeTrabajo item : itemsDeTrabajo) {
+			tiempo += item.tiempoNecesario();
+		}
+
+		return tiempo;
 	}
 
 }
